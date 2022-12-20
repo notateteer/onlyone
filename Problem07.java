@@ -1,15 +1,31 @@
+import java.util.Scanner;
+
 public class Problem07 {
     public static void main(String[] args) {
-        int sum = 0;
-        int number = 0;
+        Scanner scanner = new Scanner(System.in);
 
-        while (number < 20) {
-            number++;
-            sum += number;
-            if (sum >= 100) break;
+        System.out.print("An integer? ");
+        int num = scanner.nextInt();
+
+        if (isPalindrome(num)) {
+            System.out.print(num + " is a palindrome");
+        } else {
+            System.out.print(num + " is not a palindrome");
+        }
+    }
+
+    public static int reverse(int number) {
+        int rem, sum = 0;
+        while (number > 0) {
+            rem = number % 10;
+            sum = (sum * 10) + rem;
+            number = number / 10;
         }
 
-        System.out.println("The number is " + number);
-        System.out.println("The sum is " + sum);
+        return sum;
+    }
+
+    public static boolean isPalindrome(int number) {
+        return (number == reverse(number));
     }
 }

@@ -1,32 +1,32 @@
-import processing.core.PApplet;
+import java.util.Scanner;
 
-public class Problem05 extends PApplet {
-    int CIRCLE_COUNT = 15;
-
-    public void settings() {
-        size(1000, 600); // fullScreen () ;
-    }
-
-    public void setup() {
-        surface.setTitle("Perfect circle!");
-        background(0);
-        noStroke();
-        int w = width / 2;
-        int h = height / 2;
-        float diameter = min(width, height);
-        float diameterStep = diameter / CIRCLE_COUNT;
-        int colorValue = 0;
-        float colorStep = (float) 255 / CIRCLE_COUNT;
-
-        for (int i = 0; i < CIRCLE_COUNT; i++) {
-            fill(colorValue, 0, 0);
-            circle(w, h, diameter);
-            diameter -= diameterStep;
-            colorValue += colorStep;
+public class Problem05 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("A = ");
+        int a = scanner.nextInt();
+        System.out.print("B = ");
+        int b = scanner.nextInt();
+        if (a == 0 && b == 0) {
+            System.out.print("GCD(0, 0) is not defined.");
+        } else if (a == b) {
+            System.out.printf("GCD(%d, %d) = %d", a, b, a);
+        } else {
+            System.out.printf("GCD(%d, %d) = %d", a, b, gcd(a, b));
         }
     }
 
-    public static void main(String[] args) {
-        PApplet.main("Problem05");
+    public static int gcd(int a, int b) {
+        int greatestDivisor = 0;
+
+        while (a - b != 0) {
+            if (a > b) {
+                a -= b;
+            } else {
+                b -= a;
+            }
+            greatestDivisor = Math.min(a, b);
+        }
+        return greatestDivisor;
     }
 }
