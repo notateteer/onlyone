@@ -1,37 +1,43 @@
-import processing.core.PApplet;
+import java.util.Scanner;
 
-public class Problem04 extends PApplet {
-    float minRadius;
-    float maxRadius;
-    static final int NUMBER_OF_CIRCLES = 200;
+public class Problem04 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-    public void settings() {
-        fullScreen();
-    }
-
-    public void setup() {
-        minRadius = min(width, height) / 60f;
-        maxRadius = min(width, height) / 40f;
-        frameRate(10);
-        noStroke();
-    }
-
-    public void draw() {
-        background(0, 0, 0);
-
-        for (int i = 0; i < NUMBER_OF_CIRCLES; ++i) {
-            float x = random(0, width);
-            float y = random(0, width);
-            float r = random(minRadius, maxRadius);
-            float redComp = random(10, 255);
-            float greenComp = random(10,255);
-            float blueComp = random(10,255);
-
-            fill(redComp, greenComp, blueComp);
-            circle(x,y,4 * r);
+        System.out.print("A = ");
+        int a = scanner.nextInt();
+        System.out.print("B = ");
+        int b = scanner.nextInt();
+        if (a == 0 && b == 0) {
+            System.out.print("GCD(0, 0) is not defined.");
+        } else if (a == b) {
+            System.out.printf("GCD(%d, %d) = %d", a, b, a);
+        } else {
+            System.out.printf("GCD(%d, %d) = %d", a, b, gcd(a, b));
         }
     }
-    public static void main(String[] args) {
-        PApplet.main("Problem04");
+
+    public static int gcd(int a, int b) {
+        int divisor = 1;
+        int greatestDivisor = 0;
+        if (a > b) {
+            while (divisor <= b) {
+                if (a % divisor == 0 && b % divisor == 0) {
+                    greatestDivisor = divisor;
+                }
+                divisor++;
+            }
+        }
+
+        if (b > a) {
+            while (divisor <= a) {
+                if (a % divisor == 0 && b % divisor == 0) {
+                    greatestDivisor = divisor;
+                }
+                divisor++;
+            }
+        }
+        return greatestDivisor;
     }
+
 }

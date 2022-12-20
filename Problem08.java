@@ -1,19 +1,26 @@
+import java.util.Scanner;
+
 public class Problem08 {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("n? ");
+        int numberOfRows = scanner.nextInt();
 
-        System.out.println("Multiplication Table");
-        System.out.print("    ");
-        for (int j = 1; j <= 9; j++) {
-            System.out.print("   " + j);
-        }
+        displayPattern(numberOfRows);
+    }
 
-        System.out.println("\n------------------------------------------");
-        for (int i = 1; i <= 9; i++) {
-            System.out.print(i + " | ");
-            for (int j = 1; j <= 9; j++) {
-                System.out.printf("%4d", i * j);
+    static void displayPattern(int number) {
+        int space = number - 1;
+        for (int r = 1; r <= number; r++) {
+            for (int p = 0; p < space; p++) {
+                System.out.print("  ");
+            }
+
+            for (int i = r; i > 0; i--) {
+                System.out.print(i + " ");
             }
             System.out.println();
+            space--;
         }
     }
 }

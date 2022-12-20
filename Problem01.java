@@ -3,22 +3,32 @@ import java.util.Scanner;
 public class Problem01 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        double grades;
-        double sum = 0;
-        double count = 0;
 
-        do {
-            grades = scanner.nextDouble();
-            sum += grades;
-            count++;
-        } while (grades != 0);
-        count -= 1;
-        double arithmeticMean = sum / count;
+        System.out.print("Your coordinate: ");
+        int userX = scanner.nextInt();
+        System.out.print("Coordinate of 1st point: ");
+        int x1 = scanner.nextInt();
+        System.out.print("Coordinate of 2nd point: ");
+        int x2 = scanner.nextInt();
 
-        if (arithmeticMean>0 && arithmeticMean<6) {
-            System.out.println("The arithmetic mean is " + arithmeticMean);
+        int d1 = myAbs(x1 - userX);
+        int d2 = myAbs(x2 - userX);
+
+        if (d1 < d2) {
+            System.out.println("1st point is closer. Distance " + d1);
+        } else if (d2 < d1) {
+            System.out.println("2nd point is closer. Distance " + d2);
         } else {
-            System.out.println("Nothing to calculate");
+            System.out.println("Distance is the same: " + d1);
         }
     }
+
+
+    static int myAbs(int n) {
+        if (n < 0) {
+            n = -n;
+        }
+        return n;
+    }
+
 }

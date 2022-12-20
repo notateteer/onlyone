@@ -1,15 +1,19 @@
 import java.util.Scanner;
 
+
 public class Problem06 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int data;
+        System.out.print("Enter your number: ");
+        int number = scanner.nextInt();
+        System.out.println("The sum of digits is: " + sumDigits(number));
+    }
+    public static int sumDigits(long n) {
         int sum = 0;
-        do {
-            System.out.print("Enter an integer (the input ends if it is 0): ");
-            data = scanner.nextInt();
-            sum += data;
-        } while (data != 0);
-        System.out.println("The sum is " + sum);
+        while (n != 0) {
+            sum += n % 10;
+            n /= 10;
+        }
+        return sum;
     }
 }
